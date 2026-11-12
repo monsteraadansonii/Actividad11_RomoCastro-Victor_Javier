@@ -7,8 +7,8 @@ const listaPacientes = document.getElementById("listaPacientes");
 class Paciente {
     constructor(nombre, oxigeno, ritmo) {
         this.nombre = nombre;
-        this.oxigeno = parseInt(oxigeno);
-        this.ritmo = parseInt(ritmo);
+        this.oxigeno = Number(oxigeno);
+        this.ritmo = Number(ritmo);
         this.nivelRiesgo = this.estatusRiesgo();
     }
 
