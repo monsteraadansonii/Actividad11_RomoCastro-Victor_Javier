@@ -1,4 +1,3 @@
-
 const inputNombre = document.getElementById("nombreP");
 const inputOxigeno = document.getElementById("oxigenoP");
 const inputRitmo = document.getElementById("ritmoP");
@@ -30,29 +29,6 @@ function cargarPacientes() {
     mostrarPacientes();
 }
 
-function obtenerPacientes() {
-    return JSON.parse(localStorage.getItem("pacientes"));
-}
-
-btnRegistrar.addEventListener("click", () => {
-    const nombre = inputNombre.value.trim();
-    const oxigeno = inputOxigeno.value.trim();
-    const ritmo = inputRitmo.value.trim();
-
-    if (nombre === "" || oxigeno === "" || ritmo === "") {
-        return alert("Por favor completa todos los campos del paciente.");
-    }
-
-    const nuevoPaciente = new Paciente(nombre, oxigeno, ritmo);
-
-    const pacientes = obtenerPacientes();
-    pacientes.push(nuevoPaciente);
-    localStorage.setItem("pacientes", JSON.stringify(pacientes));
-
-    mostrarPacientes();
-    limpiarCampos();
-});
-
 function mostrarPacientes() {
     const pacientes = obtenerPacientes();
     listaPacientes.innerHTML = "";
@@ -73,6 +49,31 @@ function mostrarPacientes() {
         listaPacientes.appendChild(fila);
     });
 }
+
+function obtenerPacientes() {
+    return JSON.parse(localStorage.getItem("pacientes"));
+}
+
+btnRegistrar.addEventListener("click", () => {
+    const nombre = inputNombre.value.trim();
+    const oxigeno = inputOxigeno.value.trim();
+    const ritmo = inputRitmo.value.trim();
+
+    if (nombre === "" || oxigeno === "" || ritmo === "") {
+        return alert("No dejes espacios vacios.");
+    }
+
+    const nuevoPaciente = new Paciente(nombre, oxigeno, ritmo);
+
+    const pacientes = obtenerPacientes();
+    pacientes.push(nuevoPaciente);
+    localStorage.setItem("pacientes", JSON.stringify(pacientes));
+
+    mostrarPacientes();
+    limpiarCampos();
+});
+
+
 
 function limpiarCampos() {
     inputNombre.value = "";
