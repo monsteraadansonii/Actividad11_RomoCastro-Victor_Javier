@@ -30,7 +30,7 @@ function cargarPacientes() {
 }
 
 function obtenerPacientes() {
-    return JSON.parse(localStorage.getItem("pacientes"));
+    return JSON.parse(localStorage.getItem("pacientes")) || [];
 }
 
 btnRegistrar.addEventListener("click", () => {
@@ -57,10 +57,9 @@ function mostrarPacientes() {
     listaPacientes.innerHTML = "";
 
     pacientes.forEach((p) => {
-        
         const pacienteObj = new Paciente(p.nombre, p.oxigeno, p.ritmo);
         const fila = document.createElement("tr");
-        fila.className = pacienteObj.nivelRiesgo.clase; 
+        fila.className = pacienteObj.nivelRiesgo.clase;
 
         fila.innerHTML = `
             <td>${pacienteObj.nombre}</td>
